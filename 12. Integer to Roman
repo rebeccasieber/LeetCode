@@ -1,0 +1,91 @@
+class Solution {
+public:
+    string intToRoman(int num) {
+    
+    //Converting integer to a string
+    std::string intAsString = std::to_string(num);
+        
+    //Create empty string to hold roman numberal.
+    std::string romanNum = "";
+    
+    //Forcing integer to be 4 digits so below code doesnt go "index out of bounds"
+   if (intAsString.length() == 3)
+        intAsString = "0" + intAsString;
+   else if (intAsString.length() == 2)
+        intAsString = "00" + intAsString; 
+    else if (intAsString.length() == 1)
+        intAsString = "000" + intAsString;
+
+   //CONVERTING AT ONES DIGIT     
+   if (intAsString[3] == '1') 
+      romanNum = "I"; 
+   else if (intAsString[3] == '2') 
+      romanNum = "II";
+   else if (intAsString[3] == '3') 
+      romanNum = "III";
+   else if (intAsString[3] == '4') 
+      romanNum = "IV";
+   else if (intAsString[3] == '5')
+      romanNum = "V";
+   else if (intAsString[3] == '6') 
+       romanNum = "VI";
+   else if (intAsString[3] == '7')
+       romanNum = "VII";
+   else if (intAsString[3] == '8')
+       romanNum = "VIII";
+   else if (intAsString[3] == '9')
+       romanNum = "IX";
+
+   //CONVERTING AT TENS DIGIT
+   if (intAsString[2] == '1') 
+      romanNum = "X" + romanNum; 
+   else if (intAsString[2] == '2') 
+      romanNum = "XX" + romanNum;
+   else if (intAsString[2] == '3') 
+      romanNum = "XXX" + romanNum;
+   else if (intAsString[2] == '4') 
+      romanNum = "XL" + romanNum;
+   else if (intAsString[2] == '5')
+      romanNum = "L" + romanNum;
+   else if (intAsString[2] == '6') 
+       romanNum = "LX" + romanNum;
+   else if (intAsString[2] == '7')
+       romanNum = "LXX" + romanNum;
+   else if (intAsString[2] == '8')
+       romanNum = "LXXX" + romanNum;
+   else if (intAsString[2] == '9')
+       romanNum = "XC" + romanNum;     
+
+   //CONVERTING AT HUNDREDS DIGIT   
+   if (intAsString[1] == '1') 
+      romanNum = "C" + romanNum; 
+   else if (intAsString[1] == '2') 
+      romanNum = "CC" + romanNum;
+   else if (intAsString[1] == '3') 
+      romanNum = "CCC" + romanNum;
+   else if (intAsString[1] == '4') 
+      romanNum = "CD" + romanNum;
+   else if (intAsString[1] == '5')
+      romanNum = "D" + romanNum;
+   else if (intAsString[1] == '6') 
+       romanNum = "DC" + romanNum;
+   else if (intAsString[1] == '7')
+       romanNum = "DCC" + romanNum;
+   else if (intAsString[1] == '8')
+       romanNum = "DCCC" + romanNum;
+   else if (intAsString[1] == '9')
+       romanNum = "CM" + romanNum;       
+    
+    //CONVERTING THOUSANDS DIGIT - Constraint stops value at 3999
+   if (intAsString[0] == '1') 
+      romanNum = "M" + romanNum; 
+   else if (intAsString[0] == '2') 
+      romanNum = "MM" + romanNum;
+   else if (intAsString[0] == '3') 
+      romanNum = "MMM" + romanNum;
+   
+    return romanNum;
+    }
+};
+
+
