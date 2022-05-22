@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isPalindrome(int x) 
+    {
+        //if negative number, automatically not a pallindrome
+        if (x<0)
+            return false;
+        
+        //convert to string so i can use indexing
+        std::string intAsString = to_string(x);
+        int length = intAsString.length();
+        
+        //if 1 digit- auto pallindrome
+        if (length == 1)
+            return true;
+        
+        //if odd number of digits
+        else
+        {
+            for(int i = 0; i < ((length/2) +1); i++)
+            {
+                if (intAsString[i] != intAsString[(length-1) - i])
+                    return false;
+            }     
+        }
+    
+    return true;
+    }
+};
