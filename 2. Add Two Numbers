@@ -1,0 +1,64 @@
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode() : val(0), next(nullptr) {}
+ *     ListNode(int x) : val(x), next(nullptr) {}
+ *     ListNode(int x, ListNode *next) : val(x), next(next) {}
+ * };
+ */
+
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+    
+        ListNode * result = new ListNode();
+        ListNode * current = result;
+        int l1Digit = 0;
+        int l2Digit = 0;
+        int carry = 0;
+        int resultInt = 0;
+        
+        //traverse first list to get next node
+        while(l1||l2 != NULL) 
+        {
+            if (l1 != NULL)
+            {                
+                l1Digit = l1->val;
+                l1 = l1->next;
+            }
+            
+            else                            //theres nothing left in the linked list
+               l1Digit = 0; 
+            
+            
+            //traverse second list to get next node
+             if (l2 != NULL)
+            {                
+                l2Digit = l2->val;
+                l2 = l2->next;
+            }
+            
+            else
+               l2Digit = 0;                 //theres nothing left in the linked list
+            
+            resultInt = l1Digit + l2Digit + carry;  //total of both nodes
+ 
+            current->next = new ListNode(resultInt%10);
+            current=current->next;  
+            
+            //Determining if carry is required
+            if((resultInt) > 9)
+                carry = 1;
+            else 
+                carry = 0;
+        }
+        
+        if (carry == 1) //adding new digit if carry exists in last addition
+             current->next = new ListNode(1);
+       
+ 
+        return result->next;
+}
+};
