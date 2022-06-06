@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        int k = nums.size();                //holds number of non-duplicate array values
+        int i = 1;                          //loop through index skip nums[0]
+       
+        while(i < k)
+        {
+            if (nums[i] == nums[i-1])  
+            {
+                //if duplicate found with last number, no shifting needed
+                if (i < nums.size() - 1)
+                {
+                    //Shifting values down one
+                     auto temp = nums.begin() + i;
+                     std::rotate(temp, temp + 1, nums.end());   
+                    //IM NOT INCRIMENTING I BECAUSE SHIFTED EVERYTHING DOWN
+                }
+               k--; //decreasing non-duplicate array size
+            }
+            
+            else     //no duplicate, moving to next index
+                i++;
+        }
+    
+    return k;    
+        
+    }
+};
