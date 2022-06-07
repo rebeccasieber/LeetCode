@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isValid(string s) {
+        
+       //if string is odd length, automatically incorrect
+        if (s.length() % 2 == 1)
+            return false;
+        
+        //Searching string for "{}", "[]", or "() and deleting it, and searching again for next pair
+        while(s.length() > 0)
+        {
+            if (s.find("()") !=std::string::npos)
+                s.erase(s.find("()"), 2);
+            
+            else if (s.find("{}") !=std::string::npos)
+                s.erase(s.find("{}"), 2);
+            
+            else if (s.find("[]") !=std::string::npos)
+                s.erase(s.find("[]"), 2);
+            
+            else                //no pair was found, meaning string is wrong
+                return false;
+        }
+        
+        //If every character is sucessfully deleted from the string, then string is good
+        return true;
+        
+    }
+};
