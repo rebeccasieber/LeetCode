@@ -1,0 +1,46 @@
+class Solution {
+public:
+    void merge(vector<int>& nums1, int m, vector<int>& nums2, int n) {
+        
+        queue<int> temp;                        //temp container for nums1 values
+        int temp2= 0;
+        int indexNums1 = 0;                     //keeps track of where we are in nums1
+        int indexNums2 = 0;                     //keeps track of where we are in nums2
+        
+        //comparing numbers and entering smallest into temp queue
+        while(indexNums1 < m && indexNums2 < n)
+        {
+            if (nums1[indexNums1] <= nums2[indexNums2])
+            {
+                temp.push(nums1[indexNums1]);
+                indexNums1++;
+            }
+            else
+            {
+                temp.push(nums2[indexNums2]);
+                indexNums2++;
+            }
+        }
+        
+        //finishing out nums1 if needed
+        while(indexNums1 < m)
+        {
+            temp.push(nums1[indexNums1]);
+            indexNums1++;
+        }
+        
+        //finishing out nums2 if needed
+        while(indexNums2 < n)
+        {
+            temp.push(nums2[indexNums2]);
+            indexNums2++;
+        }
+        
+        //importing merged queue into nums1
+        for(int i = 0; i < m+n; i++)
+        {
+            nums1[i] = temp.front();
+            temp.pop();
+        } 
+    }
+};
